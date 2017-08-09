@@ -6,7 +6,7 @@ use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
 
 /**
- * Class DailyMotion
+ * Class DailyMotionResourceOwner
  * @package App\Provider
  */
 class DailyMotionResourceOwner implements ResourceOwnerInterface
@@ -42,9 +42,42 @@ class DailyMotionResourceOwner implements ResourceOwnerInterface
      */
     public function getId()
     {
-        $uri = $this->response['uri'];
+        return $this->response['data']['id'] ?: null;
+    }
 
-        return substr($uri, strrpos($uri, '/') + 1);
+    /**
+     * @return bool|string
+     */
+    public function getScreenName()
+    {
+        return $this->response['data']['screenname'] ?: null;
+    }
+
+    /**
+     * @return bool|string
+     */
+    public function getDescription()
+    {
+        return $this->response['data']['description'] ?: null;
+    }
+
+    /**
+     * @return bool|string
+     */
+    public function getProfileUrl()
+    {
+        return $this->response['data']['url'] ?: null;
+    }
+
+    /**
+     * Get the token scope
+     *
+     * @return string|null
+     */
+    public function getTokenScope()
+    {
+        $values = $this->token->getValues();
+        return empty($values['scope']) ? null : $values['scope'];
     }
 
     /**
