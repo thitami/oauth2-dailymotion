@@ -56,17 +56,9 @@ class DailyMotionResourceOwner implements ResourceOwnerInterface
     /**
      * @return bool|string
      */
-    public function getDescription()
+    public function getUserName()
     {
-        return $this->response['data']['description'] ?: null;
-    }
-
-    /**
-     * @return bool|string
-     */
-    public function getProfileUrl()
-    {
-        return $this->response['data']['url'] ?: null;
+        return $this->response['data']['username'] ?: null;
     }
 
     /**
