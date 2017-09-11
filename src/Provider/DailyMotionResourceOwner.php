@@ -42,7 +42,7 @@ class DailyMotionResourceOwner implements ResourceOwnerInterface
      */
     public function getId()
     {
-        return $this->response['data']['id'] ?: null;
+        return $this->response['id'] ?: null;
     }
 
     /**
@@ -50,7 +50,7 @@ class DailyMotionResourceOwner implements ResourceOwnerInterface
      */
     public function getScreenName()
     {
-        return $this->response['data']['screenname'] ?: null;
+        return $this->response['screenname'] ?: null;
     }
 
     /**
@@ -58,7 +58,7 @@ class DailyMotionResourceOwner implements ResourceOwnerInterface
      */
     public function getDescription()
     {
-        return $this->response['data']['description'] ?: null;
+        return $this->response['description'] ?: null;
     }
 
     /**
@@ -66,7 +66,7 @@ class DailyMotionResourceOwner implements ResourceOwnerInterface
      */
     public function getProfileUrl()
     {
-        return $this->response['data']['url'] ?: null;
+        return $this->response['url'] ?: null;
     }
 
     /**

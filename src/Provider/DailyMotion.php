@@ -42,7 +42,7 @@ class DailyMotion extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return 'https://api.dailymotion.com/oauth/token='.$token;
+        return 'https://api.dailymotion.com/user/'.$token->getResourceOwnerId().'/?user/{$userId}?id,username,screenname,description,url,avatar_120_url';
     }
 
     /**
@@ -50,7 +50,7 @@ class DailyMotion extends AbstractProvider
      */
     protected function getDefaultScopes()
     {
-        return ['public'];
+        return ['read'];
     }
 
     /**
