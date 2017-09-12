@@ -42,7 +42,7 @@ class DailyMotion extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return 'https://api.dailymotion.com/user/'.$token->getResourceOwnerId().'?id,username,screenname,description,url,avatar_120_url';
+        return 'https://api.dailymotion.com/user/me?fields=id,username,screenname,description,url,avatar_120_url';
     }
 
     /**
