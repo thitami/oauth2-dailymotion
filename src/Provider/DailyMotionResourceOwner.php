@@ -54,11 +54,23 @@ class DailyMotionResourceOwner implements ResourceOwnerInterface
     }
 
     /**
-     * @return bool|string
+     * Get resource owner's username
+     *
+     * @return string|null
      */
-    public function getDescription()
+    public function getUsername()
     {
-        return $this->response['description'] ?: null;
+        return $this->response['username'] ?: null;
+    }
+
+    /**
+     * Get resource owner's image url
+     *
+     * @return string|null
+     */
+    public function getAvatar()
+    {
+        return $this->response['avatar_120_url'] ?: null;
     }
 
     /**

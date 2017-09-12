@@ -81,16 +81,15 @@ class DailyMotionTest extends \PHPUnit_Framework_TestCase
     {
         $userId = rand(1000, 9999);
         $screenname = uniqid();
-        $description = uniqid();
-        $profileUrl = uniqid();
-        $tokenScope = 'read';
+        $username = uniqid();
+        $tokenScope = 'public';
 
         $postResponse = m::mock('Psr\Http\Message\ResponseInterface');
-        $postResponse->shouldReceive('getBody')->andReturn('{"access_token": "mock_access_token", "scope":"read", "user": {"id": "x1fz4ii","screenname": "theomoschos", "description" : "test description", "url" : "http://www.dailymotion.com/theomoschos"}}');
+        $postResponse->shouldReceive('getBody')->andReturn('{"access_token": "mock_access_token", "scope":"public", "user": {"id": "x1fz4ii","screenname": "Theo Moschos", "username" : "theomoschos"}}');
         $postResponse->shouldReceive('getHeader')->andReturn(['content-type' => 'json']);
 
         $userResponse = m::mock('Psr\Http\Message\ResponseInterface');
-        $userResponse->shouldReceive('getBody')->andReturn('{"id": "'.$userId.'", "screenname": "'.$screenname.'", "description": "'.$description.'", "url": "'.$profileUrl.'"}');
+        $userResponse->shouldReceive('getBody')->andReturn('{"data": {"id": "'.$userId.'", "screenname": "'.$screenname.'", "username": "'.$username.'"}}');
         $userResponse->shouldReceive('getHeader')->andReturn(['content-type' => 'json']);
 
         $client = m::mock('GuzzleHttp\ClientInterface');
@@ -101,8 +100,7 @@ class DailyMotionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($userId, $user->getId());
         $this->assertEquals($screenname, $user->getScreenName());
-        $this->assertEquals($description, $user->getDescription());
-        $this->assertEquals($profileUrl, $user->getProfileUrl());
+        $this->assertEquals($username, $user->getUserName());
 
         // test getTokenScope
         $this->assertEquals($tokenScope, $user->getTokenScope());
