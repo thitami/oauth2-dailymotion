@@ -70,15 +70,7 @@ class DailyMotionResourceOwner implements ResourceOwnerInterface
      */
     public function getAvatar()
     {
-        // @todo
-    }
-
-    /**
-     * @return bool|string
-     */
-    public function getUserName()
-    {
-        return $this->response['description'] ?: null;
+        return $this->response['avatar_120_url'] ?: null;
     }
 
     /**
