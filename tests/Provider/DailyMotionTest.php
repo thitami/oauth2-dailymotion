@@ -82,14 +82,14 @@ class DailyMotionTest extends \PHPUnit_Framework_TestCase
         $userId = rand(1000, 9999);
         $screenname = uniqid();
         $username = uniqid();
-        $tokenScope = 'public';
+        $tokenScope = 'read';
 
         $postResponse = m::mock('Psr\Http\Message\ResponseInterface');
-        $postResponse->shouldReceive('getBody')->andReturn('{"access_token": "mock_access_token", "scope":"public", "user": {"id": "x1fz4ii","screenname": "Theo Moschos", "username" : "theomoschos"}}');
+        $postResponse->shouldReceive('getBody')->andReturn('{"access_token": "mock_access_token", "scope":"read", "user": {"id": "x1fz4ii","screenname": "Theo Moschos", "username" : "theomoschos"}}');
         $postResponse->shouldReceive('getHeader')->andReturn(['content-type' => 'json']);
 
         $userResponse = m::mock('Psr\Http\Message\ResponseInterface');
-        $userResponse->shouldReceive('getBody')->andReturn('{"data": {"id": "'.$userId.'", "screenname": "'.$screenname.'", "username": "'.$username.'"}}');
+        $userResponse->shouldReceive('getBody')->andReturn('{"id": "'.$userId.'", "screenname": "'.$screenname.'", "username": "'.$username.'"}');
         $userResponse->shouldReceive('getHeader')->andReturn(['content-type' => 'json']);
 
         $client = m::mock('GuzzleHttp\ClientInterface');
